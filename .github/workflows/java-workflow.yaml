@@ -17,25 +17,14 @@ jobs:
       security-events: write
 
     steps:
-      - name: Checkout project
-        uses: actions/checkout@v4
-
-      - name: Set up Java
-        uses: actions/setup-java@v4
-        with:
-          distribution: temurin
-          java-version: 17
 
       - name: Build
         run: mvn -B clean verify
 
       - name: Initialize CodeQL
         if: inputs.skip-codeql-step == false
-        uses: github/codeql-action/init@v4
+        uses: malurneelima/ci-workflow/.github/actions/codeql/codeql-scan-java@v4
         with:
           languages: java-kotlin
           build-mode: autobuild
 
-      - name: Analyze with CodeQL
-        if: inputs.skip-codeql-step == false
-        uses: github/codeql-action/analyze@v4
