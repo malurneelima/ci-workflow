@@ -1,1 +1,22 @@
 name: java-workflow
+on:
+  workflow_dispatch:
+  workflow_call:
+    inputs:
+      skip-codeql-step:
+        type: boolean
+        required: false
+        default: true
+jobs:
+  tests-and-quality-checks:
+    runs-on:
+      group: DEV
+      labels: arc-runner-${{ github.repository_owner}}
+    steps:
+      - name: Checkout project
+        uses: actions/chekout@main
+
+      - name: CodeQL Scan
+        uses: actions/codeql/codeql-scan-java@main
+
+        
