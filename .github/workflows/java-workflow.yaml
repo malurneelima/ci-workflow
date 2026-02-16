@@ -14,7 +14,7 @@ jobs:
       labels: arc-runner-${{ github.repository_owner}}
     steps:
       - name: Checkout project
-        uses: actions/chekout@main
+        uses: actions/checkout@main
 
       - name: CodeQL Scan
         uses: actions/codeql/codeql-scan-java@main
